@@ -1,22 +1,32 @@
 extends CharacterBody3D
 
+# nodos
 @onready var head = $head
 @onready var third_person_cam = $head/third_person_cam
 @onready var first_person_cam = $head/first_person_cam
+@onready var standing_collision_shape_3d = $standing_CollisionShape3D
+@onready var crouching_collision_shape_3d_2 = $crouching_CollisionShape3D2
+@onready var ray_cast_3d = $RayCast3D
 
 @export var current_speed = 5.0
 
+# velocidades
 const walking_speed = 5.0
 const sprinting_speed = 9.0
 const crouching_speed = 3.0
 
 const jump_velocity = 4.5
 
-var mouse_sensitivity := 0.1
+# sensibilidad del mouse
+@export var mouse_sensitivity := 0.1
 
+# velocidad de ajuste de movimiento (mientras mayor se mueve menos)
 var lerp_speed = 15.0
 
 var direction = Vector3.ZERO
+
+# profundidad de agacharse
+var crouching_depth = -0.6
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,17 +36,20 @@ func _ready() -> void:
 	third_person_cam.current = true
 
 func _input(event):
+	# movimiento de camara
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg_to_rad(-event.relative.x) * mouse_sensitivity)
 		head.rotate_x(deg_to_rad(-event.relative.y) * mouse_sensitivity)
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-90),deg_to_rad(90))
 	
+	# sacar mouse de pantalla
 	if Input.is_action_just_pressed("exit"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_just_pressed("click") and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	# cambiar entre primera y tercera persona
 	if event.is_action_pressed("scroll_up"):
 		third_person_cam.current = false
 	
@@ -47,11 +60,23 @@ func _physics_process(delta):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if Input.is_action_pressed("crouch"):
 			current_speed = crouching_speed
-		else:
+			standing_collision_shape_3d.disabled = true
+			crouching_collision_shape_3d_2.disabled = false
+			
+		# crouching logic
+		elif !ray_cast_3d.is_colliding():
+			standing_collision_shape_3d.disabled = false
+			crouching_collision_shape_3d_2.disabled = true
 			if Input.is_action_pressed("sprint"):
 				current_speed = sprinting_speed
 			else:
 				current_speed = walking_speed
+		
+		if first_person_cam.current == true:
+			if Input.is_action_pressed("crouch"):
+				head.position.y = lerp(head.position.y, 1.8 + crouching_depth, delta * lerp_speed)
+			elif !ray_cast_3d.is_colliding():
+				head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		
 		# Add the gravity.
 		if not is_on_floor():

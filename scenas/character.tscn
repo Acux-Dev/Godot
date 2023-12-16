@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh1uxhwls8khg"]
+[gd_scene load_steps=5 format=3 uid="uid://dh1uxhwls8khg"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_7cwd7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xxm67"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r7aec"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wjup2"]
+height = 1.2
 
 [node name="character_node" type="Node3D"]
 
@@ -15,9 +18,14 @@ script = ExtResource("1_7cwd7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_xxm67")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="character"]
+[node name="standing_CollisionShape3D" type="CollisionShape3D" parent="character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_r7aec")
+
+[node name="crouching_CollisionShape3D2" type="CollisionShape3D" parent="character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_wjup2")
+disabled = true
 
 [node name="head" type="Node3D" parent="character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -26,3 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.2, 3)
 
 [node name="first_person_cam" type="Camera3D" parent="character/head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="character"]
+target_position = Vector3(0, 2, 0)
