@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh1uxhwls8khg"]
+[gd_scene load_steps=6 format=3 uid="uid://dh1uxhwls8khg"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_7cwd7"]
+[ext_resource type="PackedScene" uid="uid://dc4sdthgo78qb" path="res://GUI/pause_menu.tscn" id="2_6dj5q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xxm67"]
 
@@ -12,6 +13,7 @@ height = 1.2
 [node name="character_node" type="Node3D"]
 
 [node name="character" type="CharacterBody3D" parent="."]
+process_mode = 1
 script = ExtResource("1_7cwd7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="character"]
@@ -37,3 +39,5 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 
 [node name="RayCast3D" type="RayCast3D" parent="character"]
 target_position = Vector3(0, 2, 0)
+
+[node name="Pause_Menu" parent="." instance=ExtResource("2_6dj5q")]
