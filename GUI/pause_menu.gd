@@ -14,12 +14,12 @@ func _ready():
 	#exit_button.pressed.connect()
 
 func unpause():
-	animation_player.play("Unpause")
+	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = false
 
 func pause():
+	show()
 	animation_player.play("Pause")
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
