@@ -14,6 +14,10 @@ config/name="Movement_Character"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Persistence="*res://scripts/Persistence.gd"
+
 [display]
 
 window/size/viewport_width=1366

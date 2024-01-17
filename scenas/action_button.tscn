@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://sdtyphc733tc"]
+
+[ext_resource type="Script" path="res://scripts/action_button.gd" id="1_m15bx"]
+
+[node name="ActionButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_m15bx")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

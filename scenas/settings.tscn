@@ -1,0 +1,288 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsf4gea22bnfn"]
+
+[ext_resource type="Script" path="res://scripts/Video.gd" id="1_jtfw6"]
+[ext_resource type="Script" path="res://scripts/Audio.gd" id="2_ldiol"]
+[ext_resource type="Script" path="res://scripts/Control.gd" id="3_p5x0y"]
+[ext_resource type="PackedScene" uid="uid://sdtyphc733tc" path="res://scenas/action_button.tscn" id="3_q1sha"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" type="TabContainer" parent="CanvasLayer"]
+offset_left = 169.0
+offset_top = 111.0
+offset_right = 1197.0
+offset_bottom = 656.0
+current_tab = 1
+
+[node name="General" type="TabBar" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 2
+
+[node name="Video" type="TabBar" parent="CanvasLayer/Settings"]
+custom_minimum_size = Vector2(1028, 514)
+layout_mode = 2
+script = ExtResource("1_jtfw6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Borderless" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Borderless"
+
+[node name="VSync" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "VSync"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="CheckBox" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Borderless" type="CheckBox" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VSync" type="OptionButton" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 4
+selected = 1
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox"
+popup/item_3/id = 3
+
+[node name="Audio" type="TabBar" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_ldiol")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -65.5
+offset_right = 58.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Audio/HBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master"
+
+[node name="Music" type="Label" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="SFX" type="Label" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="Tower_Sounds" type="Label" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tower sounds"
+
+[node name="Enemy_Sounds" type="Label" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemy sounds"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Audio/HBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="HSlider" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="HSlider" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.05
+
+[node name="SFX" type="HSlider" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.05
+
+[node name="Tower_Sounds" type="HSlider" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.05
+
+[node name="Enemy_Sounds" type="HSlider" parent="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.05
+
+[node name="Control" type="TabBar" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_p5x0y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -92.5
+offset_right = 119.5
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Mouse" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Mouse" type="HSlider" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Keybinds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Forward" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Forward"
+
+[node name="Backward" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Backward"
+
+[node name="Left" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Left"
+
+[node name="Right" type="Label" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Right"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="ActionButton" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("3_q1sha")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 7
+action = "move_forward"
+
+[node name="ActionButton2" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("3_q1sha")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 7
+action = "move_back"
+
+[node name="ActionButton3" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("3_q1sha")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 7
+action = "move_left"
+
+[node name="ActionButton4" parent="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("3_q1sha")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 7
+action = "move_right"
+
+[connection signal="toggled" from="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2/Fullscreen" to="CanvasLayer/Settings/Video" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2/Borderless" to="CanvasLayer/Settings/Video" method="_on_borderless_toggled"]
+[connection signal="item_selected" from="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2/VSync" to="CanvasLayer/Settings/Video" method="_on_v_sync_item_selected"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Master" to="CanvasLayer/Settings/Audio" method="_on_master_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Master" to="CanvasLayer/Settings/Audio" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Music" to="CanvasLayer/Settings/Audio" method="_on_music_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Music" to="CanvasLayer/Settings/Audio" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/SFX" to="CanvasLayer/Settings/Audio" method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/SFX" to="CanvasLayer/Settings/Audio" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Tower_Sounds" to="CanvasLayer/Settings/Audio" method="_on_tower_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Audio/HBoxContainer/VBoxContainer2/Enemy_Sounds" to="CanvasLayer/Settings/Audio" method="_on_enemy_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Settings/Control/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Mouse" to="CanvasLayer/Settings/Control" method="_on_mouse_value_changed"]
