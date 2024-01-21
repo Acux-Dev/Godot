@@ -2,7 +2,9 @@ extends Node
  
 const PATH = "user://settings.cfg"
 var config = ConfigFile.new()
- 
+
+signal new_mouse_sense(mouse_sensitivity)
+
 func _ready():
 	for action in InputMap.get_actions():
 		if InputMap.action_get_events(action).size() != 0:
@@ -14,7 +16,9 @@ func _ready():
  
 	for i in range(5):
 		config.set_value("Audio", str(i), 0.0)
- 
+ 	
+	config.set_value("Control","Mouse_sensitivity",0.1)
+	
 	load_data()
  
 func save_data():
@@ -30,7 +34,9 @@ func load_data():
  
 func load_control_settings():
 	var keys = config.get_section_keys("Controls")
+	var mouse_sensitivity = config.get_value("Control","Mouse_sensitivity")
  
+	new_mouse_sense.emit(mouse_sensitivity)
 	for action in InputMap.get_actions():
 		if keys.has(action):
 			var value = config.get_value("Controls", action)

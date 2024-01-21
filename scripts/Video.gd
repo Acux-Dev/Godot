@@ -3,7 +3,7 @@ extends TabBar
 func _ready():
 	var screen_type = Persistence.config.get_value("Video","fullscreen")
 	if screen_type == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		%FullScreen.button_pressed = true
+		%Fullscreen.button_pressed = true
  
 	var borderless_type = Persistence.config.get_value("Video","borderless")
 	if borderless_type == true:

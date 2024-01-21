@@ -18,7 +18,7 @@ const crouching_speed = 3.0
 const jump_velocity = 4.5
 
 # sensibilidad del mouse
-@export var mouse_sensitivity := 0.1
+var mouse_sensitivity = 0.1
 
 # velocidad de ajuste de movimiento (mientras mayor se mueve menos)
 var lerp_speed = 15.0
@@ -34,6 +34,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	third_person_cam.current = true
+	
+	#agarra la sensibilidad del archivo de configuracion
+	mouse_sensitivity = Persistence.config.get_value("Control","Mouse_sensitivity")
 
 
 func _input(event):
@@ -93,5 +96,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
-
+	
 	move_and_slide()
+
+func new_mouse_sense(value):
+	mouse_sensitivity = value
